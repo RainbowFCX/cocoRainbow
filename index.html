@@ -1,72 +1,47 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <title>地球地图 - 可缩放拖拽全球地图</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    
-    <!-- 可选：更好看的地图插件（搜索功能） -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
-    
-    <style>
-        body { margin:0; padding:0; }
-        #map { width: 100vw; height: 100vh; }
-    </style>
+<meta charset="utf-8">
+<title>宇宙地图合集</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+    body{margin:0;background:#000;color:#fff;font-family:Arial,sans-serif;height:100vh;display:flex;flex-direction:column}
+    header{background:linear-gradient(to right,#120033,#000033);padding:20px;text-align:center}
+    h1{font-size:3em;margin:0;text-shadow:0 0 20px #66f}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;padding:30px;flex:1}
+    a{display:block;background:rgba(255,255,255,0.1);border-radius:15px;overflow:hidden;text-decoration:none;color:white;transition:0.4s;box-shadow:0 8px 30px rgba(0,0,0,0.6)}
+    a:hover{transform:scale(1.05);box-shadow:0 15px 40px rgba(102,102,255,0.6)}
+    img{width:100%;height:200px;object-fit:cover}
+    .title{padding:15px;font-size:1.4em;text-align:center;background:rgba(0,0,0,0.5)}
+</style>
 </head>
 <body>
-
-<div id="map"></div>
-
-<!-- Leaflet JS -->
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
-<!-- 搜索插件（可选，但非常好用） -->
-<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
-
-<script>
-// 初始化地图（初始中心点设为中国，缩放级别可自行调整）
-var map = L.map('map').setView([35.0, 105.0], 4);
-
-// OpenStreetMap 底图（免费）
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap 贡献者',
-    maxZoom: 19
-}).addTo(map);
-
-// 可选：添加多种精美底图切换（卫星、街道、地形等）
-var baseMaps = {
-    "街道图（OpenStreetMap）": L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
-    "卫星图（ESRI）": L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles © ESRI'
-    }),
-    "地形图（OpenTopoMap）": L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-        attribution: '© OpenTopoMap'
-    })
-};
-
-// 当前只显示一个，也可以打开下面这行启用底图切换控件
-// L.control.layers(baseMaps).addTo(map);
-
-// 添加搜索框（可以直接搜索城市、地址、景点）
-L.Control.geocoder({
-    defaultMarkGeocode: true,
-    placeholder: "搜索地点（如：北京、上海、巴黎）...",
-    errorMessage: "未找到该地点"
-}).addTo(map);
-
-// 可选：双击地图添加标记
-map.on('dblclick', function(e) {
-    L.marker(e.latlng).addTo(map)
-        .bindPopup("纬度: " + e.latlng.lat.toFixed(4) + "<br>经度: " + e.latlng.lng.toFixed(4))
-        .openPopup();
-});
-
-// 提示
-alert("地图加载完成！\n- 鼠标滚轮缩放\n- 拖拽移动\n- 右上角搜索框可直接搜索全球地点\n- 双击地图任意位置可添加标记");
-</script>
-
+<header><h1>宇宙地图合集</h1></header>
+<div class="grid">
+    <a href="earth.html">
+        <img src="https://api.maptiler.com/static/images/earth.jpg?key=free" alt="">
+        <div class="title">地球 · 高清卫星+中文</div>
+    </a>
+    <a href="moon.html">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Moon_poster.jpg" alt="">
+        <div class="title">月球 · 真实地形着色图</div>
+    </a>
+    <a href="mars.html">
+        <img src="https://mars.nasa.gov/system/resources/detail_files/26824_global-color-views-mars.png" alt="">
+        <div class="title">火星 · 全球马赛克图</div>
+    </a>
+    <a href="venus.html">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/34/Venus_-_December_23_2019_-_MGN_-_USGS_-_Radar_Map.jpg" alt="">
+        <div class="title">金星 · 雷达地形图</div>
+    </a>
+    <a href="jupiter-moons.html">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Jupiter_and_Io_%28captured_by_New_Horizons%29.jpg" alt="">
+        <div class="title">木星四大伽利略卫星</div>
+    </a>
+    <a href="titan.html">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4d/PIA19658-Titan-CassiniRadar-20150413.jpg" alt="">
+        <div class="title">土卫六（泰坦）· 甲烷海</div>
+    </a>
+</div>
 </body>
 </html>
